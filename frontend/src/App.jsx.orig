@@ -1,0 +1,30 @@
+import React, { useState, useEffect } from 'react'
+import LoginModal from './components/LoginModal'
+import Dashboard from './components/Dashboard'
+
+export default function App(){
+  const [token, setToken] = useState(localStorage.getItem('oss_token') || null);
+  const [username, setUsername] = useState(localStorage.getItem('oss_user') || null);
+  const [showLogin, setShowLogin] = useState(false);
+
+  useEffect(()=>{
+    if(token) localStorage.setItem('oss_token', token); else localStorage.removeItem('oss_token');
+    if(username) localStorage.setItem('oss_user', username); else localStorage.removeItem('oss_user');
+  }, [token, username]);
+
+  return (
+    <div>
+      <header className="topbar"><div className="brand">OS Scheduler</div>
+        <div className="user-area">
+          {username ? <div className="badge">{username} <button onClick={()=>{ setToken(null); setUsername(null); }}>Logout</button></div> : <button onClick={()=>setShowLogin(true)}>Login / Register</button>}
+        </div>
+      </header>
+      <main className="container">
+        <h1 className="title">OS Scheduler Visualizer</h1>
+        <p className="lead">Login (demo: admin / admin123) or register. Then start adding processes and visualize algorithms.</p>
+        <Dashboard token={token} username={username} />
+      </main>
+      {showLogin && <LoginModal onClose={()=>setShowLogin(false)} onLogin={(u,t)=>{ setUsername(u); setToken(t); setShowLogin(false); }} />}
+    </div>
+  )
+}

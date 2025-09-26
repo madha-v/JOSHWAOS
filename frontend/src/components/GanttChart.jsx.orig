@@ -1,0 +1,8 @@
+import React, { useEffect, useRef } from 'react'
+
+export default function GanttChart({ schedule }){
+  const canvasRef = useRef(null);
+  useEffect(()=>{ draw(); }, [schedule]);
+  function draw(){ const c = canvasRef.current; if(!c) return; const ctx = c.getContext('2d'); const padding = 40; const totalEnd = schedule.length ? Math.max(...schedule.map(s=>s.end)) : 0; const w = c.width = c.clientWidth * devicePixelRatio; const h = c.height = 140 * devicePixelRatio; ctx.clearRect(0,0,w,h); ctx.font = `${12*devicePixelRatio}px monospace`; const scale = totalEnd>0 ? (w - padding*devicePixelRatio) / totalEnd : 1; schedule.forEach((s,i)=>{ const x = padding*devicePixelRatio + s.start * scale; const width = (s.end - s.start) * scale; ctx.fillStyle = `hsl(${(i*60)%360} 70% 45%)`; ctx.fillRect(x, 30*devicePixelRatio, width, 50*devicePixelRatio); ctx.fillStyle = 'white'; ctx.fillText(s.pid, x + 6*devicePixelRatio, 60*devicePixelRatio); ctx.fillStyle = 'rgba(255,255,255,0.85)'; ctx.fillText(s.start, x, 95*devicePixelRatio); }); if(schedule.length){ const last = schedule[schedule.length-1]; const x = padding*devicePixelRatio + last.end * scale; ctx.fillText(last.end, x, 95*devicePixelRatio); } }
+  return <canvas ref={canvasRef} className="gantt" height="140"></canvas>
+}

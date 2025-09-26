@@ -1,0 +1,14 @@
+:root{--bg:#071829;--card:#071726;--accent:#7c5cff;--muted:#9aa4b2}
+*{box-sizing:border-box}body{font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#061225,#071829);color:#eaf2ff;margin:0}
+.topbar{display:flex;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(255,255,255,0.03)}
+.brand{font-weight:800;color:var(--accent)}.container{max-width:1100px;margin:20px auto;padding:20px}
+.title{font-size:22px;margin:8px 0}.lead{color:var(--muted);margin:8px 0 18px}.user-area button{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:16px;border-radius:12px;margin-bottom:12px}
+.layout{display:grid;grid-template-columns:380px 1fr;gap:12px}.left input{display:block;width:100%;margin:6px 0;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.01);color:inherit}
+.table-wrap{max-height:220px;overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.02);color:#cbd5e1}
+.primary{background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+.small{padding:6px 8px;border-radius:6px} .ghost{background:transparent;border:1px dashed rgba(255,255,255,0.04);padding:6px 8px;border-radius:6px;color:var(--muted)}
+.gantt{width:100%;border-radius:8px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);height:180px}
+.visual-area{min-height:180px;padding:8px;background:rgba(255,255,255,0.01);border-radius:8px;color:#cbd5e1}
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.6)}
+.modal-card{background:#071726;padding:16px;border-radius:10px;width:360px;display:flex;flex-direction:column;gap:8px}
